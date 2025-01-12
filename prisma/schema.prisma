@@ -43,6 +43,11 @@ model Session {
  
   @@map("sessions")
 }
+
+enum UserType { 
+  User
+  Admin
+}
  
 model User {
   id            String    @id @default(cuid())
@@ -53,6 +58,10 @@ model User {
   accounts      Account[]
   sessions      Session[]
   hashedPassword String?
+  createdAt     DateTime  @default(now()) 
+  updatedAt     DateTime  @updatedAt
+
+  userType      UserType @default(User)
  
   @@map("users")
 }
